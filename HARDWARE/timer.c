@@ -19,7 +19,6 @@ void TIM2_Init(u16 arr,u16 psc)
 	HAL_TIM_Base_Init(&TIM2_Handler);
 	
 	HAL_TIM_Base_Start_IT(&TIM2_Handler); //使能定时器2和定时器2更新中断：TIM_IT_UPDATE   
-//	__HAL_RCC_TIM2_CLK_DISABLE();
 }
 
 //定时器底册驱动，开启时钟，设置中断优先级
@@ -31,6 +30,9 @@ void HAL_TIM_Base_MspInit(TIM_HandleTypeDef *htim)
 		__HAL_RCC_TIM2_CLK_ENABLE();            //使能TIM2时钟
 		HAL_NVIC_SetPriority(TIM2_IRQn,3,3);    //设置中断优先级，抢占优先级1，子优先级1
 		HAL_NVIC_EnableIRQ(TIM2_IRQn);          //开启TIM2中断   
+		__HAL_TIM_DISABLE(&TIM2_Handler);
+		time = 0;
+		TIM2_Handler.Instance->CNT = 0; //定时器归零
 	}
 }
 

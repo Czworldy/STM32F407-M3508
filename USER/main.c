@@ -34,12 +34,5 @@ int main(void)
 	CAN_Mode_Init();
 	while(1)
 	{
-//		if(isCovermove == true)
-//		{	
-//			set_spd[1] = MISO_COVER_SP.i32_data;
-//			delay_ms(5000);//5s延时 （会不会影响中断）
-//			set_spd[1] = 0;
-//			isCovermove = false;
-//		}
 	}
 }
